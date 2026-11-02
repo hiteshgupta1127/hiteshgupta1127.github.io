@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hitesh Gupta</title>
+  <meta name="description" content="Hitesh Gupta, software engineer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "media",
+      theme: {
+        extend: {
+          colors: {
+            bg: "var(--bg)",
+            surface: "var(--surface)",
+            fg: "var(--fg)",
+            muted: "var(--muted)",
+            border: "var(--border)",
+          },
+          borderRadius: {card: "16px"},
+          fontFamily: {sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]},
+        },
+      },
+    };
+  </script>
+  <style type="text/tailwindcss">
+    :root {
+      --bg: #fcfcfb;
+      --surface: #ffffff;
+      --fg: #0d0d0d;
+      --muted: #6b6b68;
+      --border: #ececea;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0c;
+        --surface: #151515;
+        --fg: #f5f5f4;
+        --muted: #a3a3a0;
+        --border: #262625;
+      }
+    }
+    @layer base {
+      body { @apply bg-bg font-sans text-fg antialiased; }
+      a:focus-visible { @apply outline outline-2 outline-offset-4 outline-fg rounded-full; }
+    }
+    @layer components {
+      .btn { @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition; }
+      .btn-primary { @apply bg-fg text-bg hover:opacity-85; }
+      .btn-outline { @apply border border-border bg-surface hover:bg-bg; }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen">
+  <main class="mx-auto flex min-h-screen max-w-2xl flex-col justify-between px-6 py-16 sm:py-24">
+    <div>
+      <h1 class="text-5xl font-light leading-tight tracking-[-0.035em] sm:text-6xl">
+        Hitesh Gupta
+      </h1>
+      <p class="mt-4 text-lg text-muted">Software engineer.</p>
+
+      <p class="mt-10 max-w-md text-lg leading-relaxed">
+        I architect and design distributed backend systems, building them with Java and Spring Boot. I work with AWS and
+        Python, and build LLM-powered products on top of model APIs.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="https://github.com/hiteshgupta1127" target="_blank" rel="noopener noreferrer"
+          class="btn btn-outline">GitHub</a>
+        <a href="https://www.linkedin.com/in/hiteshgupta1127" target="_blank" rel="noopener noreferrer"
+          class="btn btn-outline">LinkedIn</a>
+      </div>
+    </div>
+
+    <footer class="mt-24 text-sm text-muted">&copy; 2026 Hitesh Gupta</footer>
+  </main>
+</body>
+
+</html>
