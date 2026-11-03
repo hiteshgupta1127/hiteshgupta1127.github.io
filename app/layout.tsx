@@ -3,7 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { palette } from "@/content/brand";
 import { profile } from "@/content/profile";
-import { baseOpenGraph, siteTitle } from "@/content/seo";
+import { baseOpenGraph, shareImage, siteTitle } from "@/content/seo";
 
 import { fontVariables } from "./fonts";
 import "./globals.css";
@@ -20,7 +20,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: profile.description,
+    images: [shareImage],
   },
+  icons: { icon: { url: "/icon.svg", type: "image/svg+xml" }, apple: "/apple-touch-icon.png" },
   robots: { index: true, follow: true },
 };
 
