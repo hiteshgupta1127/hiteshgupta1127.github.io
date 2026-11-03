@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { profile } from "@/content/profile";
 
-export const siteTitle = `${profile.name} — ${profile.role}`;
+export const siteTitle = `${profile.name} · ${profile.role}`;
 
 export const shareImage = { url: "/og.png", width: 1200, height: 630, alt: siteTitle, type: "image/png" };
 

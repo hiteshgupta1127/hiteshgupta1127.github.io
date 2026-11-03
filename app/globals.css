@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Design system — V3.2
+ * Design system - V3.2
  *
  * Raw values live only in this file. Components use the semantic utilities
  * these tokens generate (bg-canvas, text-muted, text-display, max-w-content…),
@@ -146,6 +146,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
