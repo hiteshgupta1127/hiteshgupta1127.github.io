@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Design system — V3.2
+ *
+ * Raw values live only in this file. Components use the semantic utilities
+ * these tokens generate (bg-canvas, text-muted, text-display, max-w-content…),
+ * never hex codes or arbitrary values.
+ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ---------- Color: raw values per theme ---------- */
+
+:root {
+  color-scheme: light dark;
+
+  --canvas: #fbfaf8;
+  --surface: #ffffff;
+  --subtle: #f4f3ef;
+  --line: #ecebe7;
+  --line-strong: #dad9d4;
+  --muted: #6e6d69;
+  --foreground: #111110;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --canvas: #0e0e0d;
+    --surface: #161615;
+    --subtle: #1b1b1a;
+    --line: #262624;
+    --line-strong: #3d3c38;
+    --muted: #9b9a95;
+    --foreground: #ededea;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------- Theme: tokens Tailwind turns into utilities ---------- */
+
+@theme {
+  /* Only the palette below exists; Tailwind's default colors are removed. */
+  --color-*: initial;
+
+  /* Type scale: size, line height and tracking travel together. */
+  --text-display: 4rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.04em;
+  --text-display-sm: 2.75rem;
+  --text-display-sm--line-height: 1.05;
+  --text-display-sm--letter-spacing: -0.04em;
+
+  --text-heading: 2.5rem;
+  --text-heading--line-height: 1.1;
+  --text-heading--letter-spacing: -0.03em;
+
+  --text-accent: 1.875rem;
+  --text-accent--line-height: 1.2;
+  --text-accent-sm: 1.5rem;
+  --text-accent-sm--line-height: 1.2;
+
+  --text-title: 1.125rem;
+  --text-title--line-height: 1.4;
+  --text-title--letter-spacing: -0.01em;
+
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.65;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+
+  --text-secondary: 0.9375rem;
+  --text-secondary--line-height: 1.6;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
+
+  /* Buttons and other controls. */
+  --text-control: 0.875rem;
+  --text-control--line-height: 1.25rem;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.04em;
+  --text-code: 0.8125rem;
+  --text-code--line-height: 1.7;
+
+  /* Layout: one centered column. Short intros ~60 characters, long text ~70. */
+  --container-content: 42rem;
+  --container-lead: 33.75rem;
+  --container-reading: 37.5rem;
+
+  /* Shape */
+  --radius-control: 0.75rem;
+  --radius-card: 1rem;
+
+  /* Motion: quick, color-only, easing out. */
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Tokens that reference runtime variables must be inlined. */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-muted: var(--muted);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ---------- Utilities ---------- */
+
+/*
+ * Trims a label's box to cap height and baseline so flex centering centers
+ * the letters themselves, not the font's built-in ascent/descent space.
+ * Browsers without support keep the default box.
+ */
+@utility text-trim-cap {
+  text-box: trim-both cap alphabetic;
+}
+
+/* ---------- Base ---------- */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-foreground antialiased;
+  }
+
+  ::selection {
+    @apply bg-foreground text-canvas;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
