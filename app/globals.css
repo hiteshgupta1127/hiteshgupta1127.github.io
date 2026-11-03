@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Design system — V3.2
+ * Design system - V3.2
  *
  * Raw values live only in this file. Components use the semantic utilities
  * these tokens generate (bg-canvas, text-muted, text-display, max-w-content…),
@@ -202,6 +202,12 @@
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+
+  [id] {
+    scroll-margin-top: 1.5rem;
   }
 
   body {
@@ -227,6 +233,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

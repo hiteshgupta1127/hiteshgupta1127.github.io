@@ -5,6 +5,8 @@ import { posts } from "@/content/posts";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["/", ...[...primaryNav, ...secondaryNav].map(({ href }) => href)];
 
