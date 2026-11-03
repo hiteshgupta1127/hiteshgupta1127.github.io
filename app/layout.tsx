@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={fontVariables}>
+    <html lang="en" className={fontVariables} data-scroll-behavior="smooth">
       <body>
         <div className="mx-auto flex min-h-dvh w-full max-w-content flex-col px-6">
           <main className="flex-1 pt-16 sm:pt-24">{children}</main>
