@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 
 import { profile } from "@/content/profile";
 
-export const siteTitle = `${profile.name} — ${profile.role}`;
+export const siteTitle = `${profile.name} · ${profile.role}`;
+
+export const shareImage = { url: "/og.png", width: 1200, height: 630, alt: siteTitle, type: "image/png" };
 
 /**
  * Shared Open Graph fields. Next.js replaces nested metadata objects rather
@@ -14,6 +16,7 @@ export const baseOpenGraph = {
   title: siteTitle,
   description: profile.description,
   locale: "en_US",
+  images: [shareImage],
 } satisfies Metadata["openGraph"];
 
 type PageMetadataInput = { path: string; title?: string; description?: string };
@@ -26,7 +29,7 @@ export function pageMetadata({ path, title, description }: PageMetadataInput): M
     openGraph: {
       ...baseOpenGraph,
       url: path,
-      ...(title && { title: `${title} — ${profile.name}` }),
+      ...(title && { title: `${title} · ${profile.name}` }),
       ...(description && { description }),
     },
   };

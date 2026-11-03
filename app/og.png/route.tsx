@@ -5,26 +5,26 @@ import { ImageResponse } from "next/og";
 
 import { palette } from "@/content/brand";
 import { profile } from "@/content/profile";
+import { shareImage } from "@/content/seo";
 
-export const alt = `${profile.name} — ${profile.role}`;
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+/*
+ * A route handler at /og.png (rather than the opengraph-image convention) so the
+ * static export writes a file with a .png extension; static hosts derive the
+ * content type from it. Generated once at build time.
+ */
+export const dynamic = "force-static";
 
 const colors = palette.light;
 
-/*
- * Read once when the module loads, so the image is generated at build time.
- * The image renderer only accepts static fonts, so the card uses Instrument
- * Serif (the design system's editorial face); the domain line uses the
- * renderer's built-in sans.
- */
+// The image renderer only accepts static fonts, so the card uses Instrument Serif;
+// the domain line uses the renderer's built-in sans.
 const fontsDir = join(process.cwd(), "assets/fonts");
 const [serifRegular, serifItalic] = await Promise.all([
   readFile(join(fontsDir, "InstrumentSerif-Regular.woff")),
   readFile(join(fontsDir, "InstrumentSerif-Italic.woff")),
 ]);
 
-export default function OpenGraphImage() {
+export function GET() {
   return new ImageResponse(
     (
       <div
@@ -61,7 +61,8 @@ export default function OpenGraphImage() {
       </div>
     ),
     {
-      ...size,
+      width: shareImage.width,
+      height: shareImage.height,
       fonts: [
         { name: "Instrument Serif", data: serifRegular, style: "normal", weight: 400 },
         { name: "Instrument Serif", data: serifItalic, style: "italic", weight: 400 },
