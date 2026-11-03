@@ -20,6 +20,15 @@
   --line-strong: #dad9d4;
   --muted: #6e6d69;
   --foreground: #111110;
+
+  /* Gradient moments (V3.2-G): hero aura and closing card. */
+  --aura-peach: rgb(246 199 177 / 0.75);
+  --aura-lilac: rgb(217 204 246 / 0.75);
+  --aura-sky: rgb(198 220 244 / 0.75);
+  --aura-cream: rgb(248 227 195 / 0.75);
+  --glow-from: #f9dccb;
+  --glow-via: #e6ddf8;
+  --glow-to: #d8e7f7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,6 +40,14 @@
     --line-strong: #3d3c38;
     --muted: #9b9a95;
     --foreground: #ededea;
+
+    --aura-peach: rgb(107 67 52 / 0.6);
+    --aura-lilac: rgb(67 58 120 / 0.6);
+    --aura-sky: rgb(42 75 110 / 0.6);
+    --aura-cream: rgb(92 74 44 / 0.6);
+    --glow-from: #3a2a24;
+    --glow-via: #2a2645;
+    --glow-to: #1e2b3b;
   }
 }
 
@@ -64,6 +81,10 @@
   --text-metric: 2.5rem;
   --text-metric--line-height: 1.1;
   --text-metric--letter-spacing: -0.03em;
+
+  --text-callout: 2rem;
+  --text-callout--line-height: 1.2;
+  --text-callout--letter-spacing: -0.03em;
 
   --text-subheading: 1.375rem;
   --text-subheading--line-height: 1.3;
@@ -118,10 +139,14 @@
   --spacing-section-dense: 6rem;
   --spacing-section-mobile: 5.5rem;
 
+  --spacing-aura: 53.75rem;
+  --spacing-aura-mobile: 35rem;
+
   /* Shape */
   --radius-row: 0.5rem;
   --radius-control: 0.75rem;
   --radius-card: 1rem;
+  --radius-feature: 1.25rem;
 
   /* Motion: quick, color-only, easing out. */
   --default-transition-duration: 200ms;
@@ -152,6 +177,23 @@
  */
 @utility text-trim-cap {
   text-box: trim-both cap alphabetic;
+}
+
+/*
+ * Soft peach / lilac / sky wash behind a page's top, fading into the canvas.
+ * Plain radial gradients instead of blur filters keep it cheap on phones.
+ */
+@utility bg-aura {
+  background-image:
+    radial-gradient(60% 70% at 12% 8%, var(--aura-peach), transparent 70%),
+    radial-gradient(55% 75% at 50% 0%, var(--aura-lilac), transparent 70%),
+    radial-gradient(50% 65% at 90% 12%, var(--aura-sky), transparent 70%),
+    radial-gradient(45% 40% at 45% 55%, var(--aura-cream), transparent 70%);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent);
+}
+
+@utility bg-glow {
+  background-image: linear-gradient(135deg, var(--glow-from), var(--glow-via), var(--glow-to));
 }
 
 /* ---------- Base ---------- */

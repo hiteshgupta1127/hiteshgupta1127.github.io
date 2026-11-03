@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={fontVariables}>
-      <body>
+      <body className="relative isolate">
         <div className="px-6 md:px-8">
           <div className="mx-auto flex min-h-dvh max-w-tablet flex-col lg:max-w-content">
             <SiteHeader />
