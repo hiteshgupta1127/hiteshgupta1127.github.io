@@ -2,6 +2,7 @@
 export const profile = {
   name: "Hitesh Gupta",
   role: "Software engineer",
+  location: "Bengaluru, IN",
   bio: "I architect and design distributed backend systems, building them with Java and Spring Boot. I work with AWS and Python, and build LLM‑powered products on top of model APIs.",
   /** Search and social snippet; kept under ~155 characters so it isn't cut off. */
   description:

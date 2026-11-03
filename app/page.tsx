@@ -1,14 +1,16 @@
-import type { Metadata } from "next";
-
+import { ContactPrompt } from "@/components/home/contact-prompt";
 import { Intro } from "@/components/home/intro";
+import { ProjectList } from "@/components/projects/project-card";
 import { JsonLd } from "@/components/seo/json-ld";
+import { PageStack } from "@/components/ui/page-stack";
+import { Section } from "@/components/ui/section";
+import { PostList } from "@/components/writing/post-list";
+import { posts } from "@/content/posts";
 import { profile } from "@/content/profile";
-import { baseOpenGraph } from "@/content/seo";
+import { featuredProjects } from "@/content/projects";
+import { pageMetadata } from "@/content/seo";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/" },
-  openGraph: { ...baseOpenGraph, url: "/" },
-};
+export const metadata = pageMetadata({ path: "/" });
 
 const person = {
   "@context": "https://schema.org",
@@ -24,9 +26,18 @@ const person = {
 
 export default function HomePage() {
   return (
-    <>
+    <PageStack>
       <JsonLd data={person} />
       <Intro />
-    </>
+      <Section title="Selected projects" action={{ href: "/projects", label: "View all" }}>
+        <ProjectList projects={featuredProjects} />
+      </Section>
+      <Section title="Writing" action={{ href: "/writing", label: "View all" }}>
+        <PostList posts={posts.slice(0, 4)} />
+      </Section>
+      <Section title="Contact">
+        <ContactPrompt />
+      </Section>
+    </PageStack>
   );
 }

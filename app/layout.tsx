@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { palette } from "@/content/brand";
 import { profile } from "@/content/profile";
 import { baseOpenGraph, siteTitle } from "@/content/seo";
@@ -16,11 +17,7 @@ export const metadata: Metadata = {
   authors: [{ name: profile.name, url: profile.url }],
   creator: profile.name,
   openGraph: baseOpenGraph,
-  twitter: {
-    card: "summary_large_image",
-    title: siteTitle,
-    description: profile.description,
-  },
+  twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
 
@@ -36,9 +33,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={fontVariables}>
       <body>
-        <div className="mx-auto flex min-h-dvh w-full max-w-content flex-col px-6">
-          <main className="flex-1 pt-16 sm:pt-24">{children}</main>
-          <SiteFooter />
+        <div className="px-6 md:px-8">
+          <div className="mx-auto flex min-h-dvh max-w-tablet flex-col lg:max-w-content">
+            <SiteHeader />
+            <main className="flex-1 pt-26 sm:pt-34">{children}</main>
+            <SiteFooter />
+          </div>
         </div>
       </body>
     </html>

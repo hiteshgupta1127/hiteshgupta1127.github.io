@@ -15,3 +15,19 @@ export const baseOpenGraph = {
   description: profile.description,
   locale: "en_US",
 } satisfies Metadata["openGraph"];
+
+type PageMetadataInput = { path: string; title?: string; description?: string };
+
+export function pageMetadata({ path, title, description }: PageMetadataInput): Metadata {
+  return {
+    ...(title && { title }),
+    ...(description && { description }),
+    alternates: { canonical: path },
+    openGraph: {
+      ...baseOpenGraph,
+      url: path,
+      ...(title && { title: `${title} — ${profile.name}` }),
+      ...(description && { description }),
+    },
+  };
+}
