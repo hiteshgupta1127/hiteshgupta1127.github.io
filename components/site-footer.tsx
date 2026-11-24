@@ -10,7 +10,7 @@ const elsewhere = [
 
 function FooterLinks({ label, links }: { label: string; links: readonly { href: string; label: string }[] }) {
   return (
-    <ul aria-label={label} className="flex gap-5">
+    <ul aria-label={label} className="flex flex-wrap gap-x-5 gap-y-2">
       {links.map(({ href, label: text }) => (
         <li key={href}>
           <AppLink href={href} className="transition-colors hover:text-foreground">
