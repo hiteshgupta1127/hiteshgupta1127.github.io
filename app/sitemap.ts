@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { primaryNav, secondaryNav } from "@/content/navigation";
+import { morePages, primaryNav, secondaryNav } from "@/content/navigation";
 import { posts } from "@/content/posts";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
@@ -8,7 +8,8 @@ import { projects } from "@/content/projects";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["/", ...[...primaryNav, ...secondaryNav].map(({ href }) => href)];
+  const navItems = [...primaryNav, ...secondaryNav, ...morePages];
+  const pages = [...new Set(["/", ...navItems.map(({ href }) => href)])];
 
   return [
     ...pages.map((path) => ({ url: new URL(path, profile.url).href, changeFrequency: "monthly" as const })),
